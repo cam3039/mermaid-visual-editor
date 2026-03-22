@@ -52,6 +52,7 @@ function AccordionSection({
     <div>
       <button
         onClick={onToggle}
+        className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
         style={{
           width: '100%',
           background: 'none',
@@ -123,6 +124,7 @@ export function InspectorPanel({ syntax, onCollapse }: InspectorPanelProps) {
             disabled={nodesLength === 0}
             title="Auto-arrange nodes into a hierarchy"
             aria-label="Auto Layout"
+            className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
             style={{
               background: NEU_BG,
               border: 'none',
@@ -151,6 +153,7 @@ export function InspectorPanel({ syntax, onCollapse }: InspectorPanelProps) {
             onClick={onCollapse}
           title="Collapse inspector"
           aria-label="Collapse inspector"
+          className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
           style={{
             background: NEU_BG,
             border: 'none',

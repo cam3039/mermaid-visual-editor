@@ -44,6 +44,7 @@ export function LayerStackSection() {
               key={node.id}
               onClick={() => selectNode(node.id)}
               title={`Select ${node.data.label}`}
+              className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
               style={{
                 background: NEU_BG,
                 border: 'none',
