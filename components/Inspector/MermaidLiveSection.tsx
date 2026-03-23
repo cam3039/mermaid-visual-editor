@@ -93,6 +93,7 @@ function ExpandModal({ syntax, onClose }: { syntax: string; onClose: () => void 
           <div style={{ display: 'flex', gap: 8 }}>
             <button
               onClick={handleCopy}
+              aria-label={copied ? 'Syntax copied' : 'Copy Syntax'}
               style={{
                 background: NEU_BG,
                 border: 'none',
@@ -110,6 +111,7 @@ function ExpandModal({ syntax, onClose }: { syntax: string; onClose: () => void 
             </button>
             <button
               onClick={onClose}
+              aria-label="Close"
               style={{
                 background: NEU_BG,
                 border: 'none',
@@ -197,6 +199,7 @@ export function MermaidLiveSection({ syntax }: MermaidLiveSectionProps) {
           <button
             onClick={() => setExpanded(true)}
             title="Expand preview"
+            aria-label="Expand preview"
             style={{
               background: NEU_BG,
               border: 'none',
@@ -223,6 +226,7 @@ export function MermaidLiveSection({ syntax }: MermaidLiveSectionProps) {
           {/* Copy syntax button */}
           <button
             onClick={handleCopy}
+            aria-label={copied ? 'Syntax copied' : 'Copy Syntax'}
             style={{
               background: NEU_BG,
               border: 'none',
