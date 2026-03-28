@@ -23,6 +23,7 @@ function NeuBtn({
       onClick={onClick}
       disabled={disabled}
       title={title}
+      className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
       style={{
         background: NEU_BG,
         border: 'none',
@@ -57,6 +58,7 @@ function ColorSwatch({
     <label
       title={label}
       aria-label={label}
+      className="focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500"
       style={{
         display: 'flex',
         flexDirection: 'column',

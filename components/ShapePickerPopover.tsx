@@ -85,6 +85,7 @@ export function ShapePickerPopover({ onClose }: ShapePickerPopoverProps) {
                 title={label}
                 aria-label={label}
                 onClick={() => handleShapeClick(shape)}
+                className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
                 style={{
                   width: 36,
                   height: 32,
