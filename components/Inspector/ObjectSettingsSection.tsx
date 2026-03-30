@@ -66,6 +66,7 @@ function ColorSwatch({
       }}
     >
       <div
+        className="focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500"
         style={{
           width: 28,
           height: 28,
@@ -83,6 +84,7 @@ function ColorSwatch({
           type="color"
           defaultValue={value ?? defaultVal}
           onChange={(e) => onChange(e.target.value)}
+          className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
           style={{
             position: 'absolute',
             inset: 0,
