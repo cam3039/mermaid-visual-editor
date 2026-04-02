@@ -22,6 +22,8 @@ function NeuBtn({
     <button
       onClick={onClick}
       title={title}
+      aria-label={title}
+      className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
       style={{
         background: NEU_BG,
         border: 'none',
