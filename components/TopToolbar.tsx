@@ -33,6 +33,7 @@ function NeuIconBtn({
 }) {
   return (
     <button
+      className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
       onClick={onClick}
       disabled={disabled}
       title={title}
