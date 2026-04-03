@@ -20,6 +20,7 @@ function NeuBtn({
 }) {
   return (
     <button
+      className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
       onClick={onClick}
       disabled={disabled}
       title={title}
@@ -66,6 +67,7 @@ function ColorSwatch({
       }}
     >
       <div
+        className="focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500"
         style={{
           width: 28,
           height: 28,

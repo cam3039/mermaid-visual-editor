@@ -20,6 +20,7 @@ function ZoomBtn({
 }) {
   return (
     <button
+      className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
       onClick={onClick}
       title={title}
       aria-label={title}
@@ -113,6 +114,7 @@ export function ZoomControls() {
       <ZoomBtn onClick={handleZoomOut} title="Zoom out">−</ZoomBtn>
 
       <button
+        className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
         onClick={handleFit}
         title="Fit view"
         style={{
