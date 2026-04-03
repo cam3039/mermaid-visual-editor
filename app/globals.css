@@ -30,3 +30,9 @@ body {
 .neu-inset  { box-shadow: var(--neu-shadow-inset); }
 .neu-concave{ box-shadow: var(--neu-shadow-concave); }
 .neu-soft   { box-shadow: var(--neu-shadow-soft); }
+
+button:focus-visible, input:focus-visible, select:focus-visible, [role="button"]:focus-visible, [tabindex="0"]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #4F46E5 !important;
+  border-radius: inherit;
+}
