@@ -1,3 +1,6 @@
 ## 2024-05-24 - Modal Accessibility and Focus Management
 **Learning:** Import modal was missing screen reader context (`role="dialog"`, `aria-labelledby`, `aria-describedby`) and live regions for asynchronous parsing feedback. Keyboard focus states on buttons were also missing.
 **Action:** When building modals, always include proper ARIA roles and labels, ensure focus visible states on all interactive elements, and use `aria-live` regions for any dynamic status updates (like the parser feedback) so screen readers can announce them.
+## 2025-04-04 - Accordion Accessibility Improvements
+**Learning:** Collapsible components built using conditional rendering (`{open && <Children />}`) present significant accessibility issues because the linked `aria-controls` node gets removed from the DOM, invalidating the reference for screen readers. Furthermore, interactive custom components frequently lacked focus indicators, hindering keyboard navigation.
+**Action:** Always maintain the content container in the DOM and toggle its visibility using CSS (`display: open ? 'block' : 'none'`) instead of unmounting it. Link it tightly to the trigger button using `aria-controls` with a React `useId()` and manage `aria-expanded={open}` state. For custom styled components, always add `focus-visible:outline` utilities (or equivalent CSS) so keyboard navigation is visually clear.
