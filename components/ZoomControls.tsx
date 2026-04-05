@@ -24,6 +24,7 @@ function ZoomBtn({
       title={title}
       aria-label={title}
       disabled={disabled}
+      className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
       style={{
         background: NEU_BG,
         border: 'none',
@@ -115,6 +116,7 @@ export function ZoomControls() {
       <button
         onClick={handleFit}
         title="Fit view"
+        className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
         style={{
           background: NEU_BG,
           border: 'none',

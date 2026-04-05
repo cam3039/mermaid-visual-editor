@@ -178,6 +178,7 @@ export function CommandPalette({ onClose }: CommandPaletteProps) {
                 <button
                   key={item.id}
                   onClick={item.action}
+                  className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                   style={{
                     width: '100%',
                     background: NEU_BG,
