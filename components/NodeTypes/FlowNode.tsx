@@ -234,7 +234,7 @@ interface LabelProps {
   setDraft: (v: string) => void
   onCommit: () => void
   onKeyDown: (e: React.KeyboardEvent) => void
-  inputRef: React.RefObject<HTMLInputElement | null>
+  inputRef: React.RefObject<HTMLTextAreaElement | null>
   color?: string
 }
 
@@ -250,13 +250,14 @@ function NodeLabel({
 }: LabelProps) {
   if (editing) {
     return (
-      <input
+      <textarea
         ref={inputRef}
         value={draft}
         onChange={(e) => setDraft(e.target.value)}
         onBlur={onCommit}
         onKeyDown={onKeyDown}
-        className="bg-transparent border-none outline-none text-center text-sm w-full"
+        rows={Math.max(2, draft.split('\n').length)}
+        className="bg-transparent border-none outline-none text-center text-sm w-full resize-none leading-snug"
         autoFocus
         aria-label="Node label"
       />
@@ -264,7 +265,7 @@ function NodeLabel({
   }
   return (
     <span
-      className="text-center break-words text-sm font-medium leading-snug select-none"
+      className="text-center break-words whitespace-pre-wrap text-sm font-medium leading-snug select-none"
       style={{ color: color || '#1f2937' }}
     >
       {value}
@@ -278,7 +279,7 @@ export function FlowNode({ id, data, selected }: NodeProps) {
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState(nodeData.label)
   const [isHovered, setIsHovered] = useState(false)
-  const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLTextAreaElement>(null)
   const updateNodeLabel = useFlowStore((s) => s.updateNodeLabel)
   const pushHistory = useFlowStore((s) => s.pushHistory)
 
@@ -297,7 +298,10 @@ export function FlowNode({ id, data, selected }: NodeProps) {
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       e.stopPropagation()
-      if (e.key === 'Enter') commitLabel()
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault()
+        commitLabel()
+      }
       if (e.key === 'Escape') setEditing(false)
     },
     [commitLabel]

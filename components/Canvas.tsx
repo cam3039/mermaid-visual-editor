@@ -52,7 +52,7 @@ function CanvasInner({ onOpenPalette }: CanvasInnerProps) {
       }
 
       // N → add node (when not typing)
-      if (!isTyping && (e.key === 'n' || e.key === 'N')) {
+      if (!isTyping && e.code === 'KeyN') {
         addNode()
         return
       }
@@ -60,42 +60,42 @@ function CanvasInner({ onOpenPalette }: CanvasInnerProps) {
       const ctrl = e.ctrlKey || e.metaKey
 
       // Ctrl+Z → undo
-      if (ctrl && !e.shiftKey && e.key === 'z') {
+      if (ctrl && !e.shiftKey && e.code === 'KeyZ') {
         e.preventDefault()
         undo()
         return
       }
 
       // Ctrl+Shift+Z or Ctrl+Y → redo
-      if ((ctrl && e.shiftKey && e.key === 'z') || (ctrl && e.key === 'y')) {
+      if ((ctrl && e.shiftKey && e.code === 'KeyZ') || (ctrl && e.code === 'KeyY')) {
         e.preventDefault()
         redo()
         return
       }
 
       // Ctrl+D → duplicate selected
-      if (ctrl && e.key === 'd') {
+      if (ctrl && e.code === 'KeyD') {
         e.preventDefault()
         duplicateSelected()
         return
       }
 
       // Ctrl+C → copy selected
-      if (ctrl && !e.shiftKey && e.key === 'c') {
+      if (ctrl && !e.shiftKey && e.code === 'KeyC') {
         e.preventDefault()
         copySelected()
         return
       }
 
       // Ctrl+V → paste clipboard
-      if (ctrl && !e.shiftKey && e.key === 'v') {
+      if (ctrl && !e.shiftKey && e.code === 'KeyV') {
         e.preventDefault()
         pasteClipboard()
         return
       }
 
       // Ctrl+K / Meta+K → open command palette
-      if (ctrl && e.key === 'k') {
+      if (ctrl && e.code === 'KeyK') {
         e.preventDefault()
         onOpenPalette?.()
         return

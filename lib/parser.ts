@@ -24,6 +24,12 @@ export interface ParseResult {
   error: string | null
 }
 
+// ─── Label helpers ────────────────────────────────────────────────────────────
+
+function decodeLabel(label: string): string {
+  return label.replace(/<br\s*\/?>/gi, '\n')
+}
+
 // ─── Node shape detection ─────────────────────────────────────────────────────
 // Parses a node suffix like [label], (label), {label}, etc.
 // Supports both quoted ("label") and unquoted (label) forms.
@@ -132,7 +138,7 @@ function extractNodeRef(str: string): NodeRef | null {
     if (parsed) {
       return {
         id,
-        label: parsed.label,
+        label: decodeLabel(parsed.label),
         shape: parsed.shape,
         rest: after.slice(shapeStr.length),
       }
@@ -347,15 +353,23 @@ export function parseMermaidFlowchart(syntax: string): ParseResult {
         continue
       }
 
-      // ── Flowchart header
-      const headerMatch = line.match(/^flowchart\s+(TD|LR|BT|RL)/)
+      // ── Flowchart / graph header (also accepts 'graph' keyword and 'TB' synonym for TD)
+      const headerMatch = line.match(/^(?:flowchart|graph)\s+(TD|TB|LR|BT|RL)/)
       if (headerMatch) {
-        direction = headerMatch[1] as Direction
+        direction = (headerMatch[1] === 'TB' ? 'TD' : headerMatch[1]) as Direction
         foundHeader = true
         continue
       }
 
       if (!foundHeader) continue
+
+      // ── Skip unsupported Mermaid-live directives
+      if (
+        line.startsWith('classDef ') ||
+        line.startsWith('class ') ||
+        line.startsWith('click ') ||
+        line.startsWith('direction ')
+      ) continue
 
       // ── Subgraph block
       if (line.startsWith('subgraph ')) {
@@ -456,7 +470,7 @@ export function parseMermaidFlowchart(syntax: string): ParseResult {
     // Apply pending link styles
     edges.forEach((edge, i) => {
       const sc = pendingLinkStyles.get(i)
-      if (sc) edge.data = { ...edge.data, strokeColor: sc } as FlowEdgeData
+      if (sc) edge.data = { ...(edge.data ?? {}), strokeColor: sc } as FlowEdgeData
     })
 
     // Layout
