@@ -59,6 +59,9 @@ function CanvasInner({ onOpenPalette }: CanvasInnerProps) {
 
       const ctrl = e.ctrlKey || e.metaKey
 
+      // Don't intercept any shortcuts while typing in an input or textarea
+      if (isTyping) return
+
       // Ctrl+Z → undo
       if (ctrl && !e.shiftKey && e.code === 'KeyZ') {
         e.preventDefault()
