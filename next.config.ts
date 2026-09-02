@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   output: 'export',       // generates out/ directory
   trailingSlash: true,    // each route → /route/index.html
   basePath: '/mermaid-visual-editor',
+  images: {
+    unoptimized: true,
+  },
 
   // NOTE: headers() only applies to `next dev` / `next start`.
   // The static out/ export is served by bin/cli.js (serve package) —
